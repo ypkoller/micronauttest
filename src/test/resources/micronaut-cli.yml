@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: ch.yves.micronaut
+---
+testFramework: junit
+sourceLanguage: java
