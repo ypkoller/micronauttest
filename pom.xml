@@ -5,7 +5,7 @@
 	<artifactId>micronauttest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
-		<exec.mainClass>example.Application</exec.mainClass>
+		<exec.mainClass>io.micronaut.runtime.Micronaut.Application</exec.mainClass>
 		<micronaut.version>1.0.0</micronaut.version>
 		<jdk.version>1.8</jdk.version>
 		 <maven.compiler.source>1.8</maven.compiler.source>
@@ -76,4 +76,70 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>${exec.mainClass}</mainClass>
+                </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <configuration>
+          <executable>java</executable>
+          <arguments>
+            <argument>-classpath</argument>
+            <classpath/>
+            <argument>${exec.mainClass}</argument>
+          </arguments>
+        </configuration>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.7.0</version>
+          <configuration>
+            <source>${jdk.version}</source>
+            <target>${jdk.version}</target>
+            <compilerArgs>
+              <arg>-parameters</arg>
+            </compilerArgs>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>io.micronaut</groupId>
+                <artifactId>micronaut-inject-java</artifactId>
+                <version>${micronaut.version}</version>
+              </path>
+             <path>
+                <groupId>io.micronaut.configuration</groupId>
+                <artifactId>micronaut-openapi</artifactId>
+                <version>${micronaut.version}</version>
+              </path>              
+            </annotationProcessorPaths>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+</build>
 </project>

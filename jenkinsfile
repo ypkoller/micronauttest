@@ -1,4 +1,4 @@
-def CONTAINER_NAME="firsttry"
+def CONTAINER_NAME="micronaut"
 def CONTAINER_TAG="latest"
 def DOCKER_HUB_USER="gandalf1973"
 def HTTP_PORT="8080"
@@ -21,17 +21,18 @@ node {
 	    cobertura coberturaReportFile: "target/site/cobertura/*.xml"
     }
 
-/*
+
 	stage('Build'){
 	    sh "mvn install"
 	}
   
+  /*
     stage('SonarQube analysis') {
     	withSonarQubeEnv('SonarQube') {
       	// requires SonarQube Scanner for Maven 3.2+
       	sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
     }
-  }
+  } */
 
    stage("Image Prune"){
         imagePrune(CONTAINER_NAME)
@@ -50,7 +51,6 @@ node {
     stage('Run App'){
         runApp(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT)
     }
-    */
 }
 
 def imagePrune(containerName){
