@@ -5,7 +5,7 @@
 	<artifactId>micronauttest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
-		<exec.mainClass>io.micronaut.runtime.Micronaut.Application</exec.mainClass>
+		<exec.mainClass>ch.yves.micronaut.Application</exec.mainClass>
 		<micronaut.version>1.0.0</micronaut.version>
 		<jdk.version>1.8</jdk.version>
 		 <maven.compiler.source>1.8</maven.compiler.source>
