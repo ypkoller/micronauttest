@@ -18,7 +18,7 @@ import org.testcontainers.shaded.org.apache.http.util.EntityUtils;
 
 public class ITDocker {
 	
-	private final int exposedPort = 6060;
+	private final int exposedPort = 8080;
 
     @Rule
     public GenericContainer dslContainer = new GenericContainer("gandalf1973/micronaut:latest")
