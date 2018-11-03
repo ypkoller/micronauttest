@@ -50,7 +50,7 @@ node {
 
 	stage('verify')
 	{
-    	 sh "mvn -dit.test=ITDocker verify"
+    	 sh "mvn -Dit.test=ITDocker verify"
     }
 
 
