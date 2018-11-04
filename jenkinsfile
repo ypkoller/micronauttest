@@ -48,15 +48,9 @@ node {
         }
     }
 
-	stage('verify')
-	{
-    	 sh "mvn clean -Dit.test=ITDocker verify"
-    }
-
-
-    /*stage('Run App'){
+    stage('Run App'){
         runApp(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT)
-    }*/
+    }
 }
 
 def imagePrune(containerName){
