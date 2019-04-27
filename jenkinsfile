@@ -17,7 +17,7 @@ node {
     /*
     stage('Test') {
        sh "mvn clean cobertura:cobertura -Dcobertura.report.format=xml"
-	    junit "**/target/surefire-reports/*.xml"
+	    junit "**target/surefire-reports*.xml"
 	    cobertura coberturaReportFile: "target/site/cobertura/*.xml"
     }
     */
