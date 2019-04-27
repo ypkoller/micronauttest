@@ -1,6 +1,6 @@
-def CONTAINER_NAME="micronaut"
+def CONTAINER_NAME="micronaut2"
 def CONTAINER_TAG="latest"
-def DOCKER_HUB_USER="gandalf1973"
+def DOCKER_HUB_USER="test"
 def HTTP_PORT="8080"
 
 node {
@@ -74,12 +74,12 @@ def pushToImage(containerName, tag, dockerUser, dockerPassword){
     sh "docker push $dockerUser/$containerName:$tag" 
     */
     sh "docker tag $containerName:$tag 192.168.1.102:4890/$dockerUser/$containerName:$tag"
-    sh "docker push 192.168.1.102:4890/test/micronaut:$tag" 
+    sh "docker push 192.168.1.102:4890/$dockerUser/$containerName:$tag" 
     echo "Image push complete"
 }
 
 def runApp(containerName, tag, dockerHubUser, httpPort){
-    sh "docker pull /test/micronaut"
-    sh "docker run -d --rm -p $httpPort:$httpPort --name $containerName /test/micronaut:$tag"
+    sh "docker pull $dockerHubUser/$containerName"
+    sh "docker run -d --rm -p $httpPort:$httpPort --name $containerName $dockerHubUser/$containerName:$tag"
     echo "Application started on port: ${httpPort} (http)"
 }
