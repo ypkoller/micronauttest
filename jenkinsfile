@@ -14,12 +14,13 @@ node {
     stage('Checkout') {
         checkout scm
     }
-    
+    /*
     stage('Test') {
        sh "mvn clean cobertura:cobertura -Dcobertura.report.format=xml"
 	    junit "**/target/surefire-reports/*.xml"
 	    cobertura coberturaReportFile: "target/site/cobertura/*.xml"
     }
+    */
 
 
 	stage('Build'){
